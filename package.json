@@ -1,0 +1,24 @@
+{
+  "name": "blinker-poc",
+  "version": "0.1.0",
+  "private": true,
+  "description": "proof of concept for blinker refi project",
+  "devDependencies": {
+    "react-scripts": "0.8.5"
+  },
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
+    "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.7",
+    "redux": "^3.6.0",
+    "redux-devtools": "^3.3.2"
+  },
+  "scripts": {
+    "start": "NODE_PATH=./src react-scripts start",
+    "build": "NODE_PATH=./src react-scripts build",
+    "test": "NODE_PATH=./src react-scripts test --env=jsdom",
+    "eject": "NODE_PATH=./src react-scripts eject"
+  }
+}
