@@ -3,8 +3,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 // create the store here so that we dont have to export from index.js
 import { createStore, applyMiddleware, compose } from 'redux'
-// NOTE: comment back in once made
-// import { reducers } from 'reducers'
+import { reducers } from 'reducers'
 import thunk from 'redux-thunk'
 import DevTools from 'containers/DevTools'
 // MIDDLEWARE
@@ -12,18 +11,16 @@ import DevTools from 'containers/DevTools'
 // import api from 'middleware/api'
 
 import App from 'components/App'
+import Landing from 'components/Landing'
+import Refi from 'components/Refi'
 import NotFound from 'components/NotFound'
 
 const middleware = routerMiddleware(browserHistory)
 // export store for the Provider in index.js
-// export const store = createStore(
-//   reducers,
-//   compose(applyMiddleware(thunk, api, middleware),
-//   DevTools.instrument())
-// )
 export const store = createStore(
-  compose(applyMiddleware(thunk, middleware)),
-  DevTools.instrument()
+  reducers,
+  compose(applyMiddleware(thunk, middleware),
+  DevTools.instrument())
 )
 
 const history = syncHistoryWithStore(browserHistory, store)
@@ -31,7 +28,8 @@ const history = syncHistoryWithStore(browserHistory, store)
 export const AppRouter = (
   <Router history={ history }>
     <Route path='/' component={ App }>
-      <IndexRoute component={ App } />
+      <IndexRoute component={ Landing } />
+      <Route path='/refi/:customerName' component={ Refi } />
       <Route path='*' component={ NotFound } />
     </Route>
   </Router>
